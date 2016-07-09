@@ -1,0 +1,14 @@
+{
+    "name": "arleslie/directadmin",
+    "description": "PHP Library for DirectAdmin's API",
+    "require": {
+        "guzzlehttp/guzzle": "~6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Leslie",
+            "email": "arleslie@arleslie.com"
+        }
+    ]
+}
