@@ -7,18 +7,25 @@ use GuzzleHttp\Client as Guzzle;
 
 class DirectAdmin
 {
-	private $guzzle;
+    use commands\AccountCommands, commands\IPCommands;
 
-	public function __construct($host, $username, $password, $port = 2222)
-	{
-		$this->guzzle = new Guzzle([
-			'base_uri' => $host . ':' . $port,
-			'defaults' => [
-				'auth' => [
-					$username,
+    private $guzzle;
+
+    public function __construct($host, $username, $password, $port = 2222)
+    {
+        $this->guzzle = new Guzzle([
+            'base_uri' => $host . ':' . $port,
+            'defaults' => [
+                'auth' => [
+                    $username,
                     $password
-				]
-			]
-		]);
-	}
+                ]
+            ]
+        ]);
+    }
+
+    private function parse($return)
+    {
+        return $return;
+    }
 }
