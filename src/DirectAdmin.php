@@ -7,7 +7,9 @@ use GuzzleHttp\Client as Guzzle;
 
 class DirectAdmin
 {
-    use commands\AccountCommands, commands\IPCommands;
+    use commands\AccountCommands,
+        commands\IPCommands,
+        commands\ServerInformationCommands;
 
     private $guzzle;
 
