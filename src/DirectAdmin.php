@@ -13,10 +13,10 @@ class DirectAdmin
 
     private $guzzle;
 
-    public function __construct($host, $username, $password, $port = 2222)
+    public function __construct($host, $username, $password)
     {
         $this->guzzle = new Guzzle([
-            'base_uri' => $host . ':' . $port,
+            'base_uri' => $host,
             'defaults' => [
                 'auth' => [
                     $username,
