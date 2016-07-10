@@ -2,7 +2,7 @@
 
 namespace arleslie\DirectAdmin\commands;
 
-trait ServerInformation
+trait ServerInformationCommands
 {
     public function serverStats()
     {
