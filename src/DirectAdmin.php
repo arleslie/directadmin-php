@@ -9,6 +9,7 @@ class DirectAdmin
 {
     use commands\AccountCommands,
         commands\IPCommands,
+        commands\PackageCommands,
         commands\ServerInformationCommands;
 
     private $guzzle;
