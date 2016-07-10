@@ -2,8 +2,8 @@
 
 namespace arleslie\DirectAdmin;
 
-use \Symfony\Component\HttpFoundation\Response;
 use GuzzleHttp\Client as Guzzle;
+use arleslie\DirectAdmin\Exceptions\InvalidLoginException;
 
 class DirectAdmin
 {
@@ -13,21 +13,26 @@ class DirectAdmin
 
     private $guzzle;
 
-    public function __construct($host, $username, $password)
+    public function __construct(string $host, string $username, string $password)
     {
         $this->guzzle = new Guzzle([
             'base_uri' => $host,
-            'defaults' => [
-                'auth' => [
-                    $username,
-                    $password
-                ]
+            'auth' => [
+                $username,
+                $password
             ]
         ]);
     }
 
-    private function parse($return)
+    private function parse(\GuzzleHttp\Psr7\Response $return)
     {
+        $headers = $return->getHeaders();
+        if (isset($headers['X-DirectAdmin']) && $headers['X-DirectAdmin'][0] === 'unauthorized') {
+            throw new InvalidLoginException();
+        }
+
+        parse_str((string) $return->getBody(), $return);
+
         return $return;
     }
 }
